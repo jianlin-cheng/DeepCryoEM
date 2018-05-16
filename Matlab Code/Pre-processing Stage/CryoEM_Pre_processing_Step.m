@@ -52,7 +52,7 @@ D = dir('*.tif');
         normalized_CryoEm = double(originalImage)./double(max(originalImage(:)));
         subplot(2,2,3); imshow(normalized_CryoEm);title('Normalized CryoEm Image')
         % Compute the normalized image histogram
-        subplot(2,2,4); imhist(Inormalized);title('Histogram of the Normalized Cryo-Image');
+        subplot(2,2,4); imhist(normalized_CryoEm);title('Histogram of the Normalized Cryo-Image');
         % Deted the image level
         limit1=stretchlim(normalized_CryoEm);
         % Adjust the Image based on the limit
@@ -109,19 +109,23 @@ disp('All The CryoEm images pre-processing have been done ...');
 %
 figure;
 plot(PSNR_values);
+title('CryoEM Images PSNR Quality Estimation')
 hold on
 xlabel('No. of CryoEm Images')
 ylabel('Peak Signal to Signal Noise Ratio (PSNR)');
 
 figure;
 plot(MSE_values);
+title('CryoEM Images SNR Quality Estimation')
 xlabel('No. of CryoEm Images')
 ylabel('Mean Sequare Error Ratio (MSE)');
 
 figure;
 plot(SNR_values);
+title('CryoEM Images MSE Quality Estimation')
 xlabel('No. of CryoEm Images')
 ylabel('Signal to Noise Ratio (SNR)');
 %
 average_time=mean(consuming_time);
 fprintf('The Average Consuming time t is : %f\n',average_time);
+
