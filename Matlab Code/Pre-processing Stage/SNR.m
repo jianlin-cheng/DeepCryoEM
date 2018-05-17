@@ -1,4 +1,4 @@
-function snr_value= SNR(original_image, new_image)
+function snr_value= SNR(original_image,new_image)
 %% SNR (Signal to noise ratio)
 % The signal-to-noise ratio (SNR) is used in imaging as a physical measure 
 % of the sensitivity of a (digital or film) imaging system.
