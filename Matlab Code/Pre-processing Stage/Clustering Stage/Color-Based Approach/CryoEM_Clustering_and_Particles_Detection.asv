@@ -1,0 +1,29 @@
+%% CryoEM Color-Based Segmentation Using SOM...
+%
+close all; clear all; clc;
+%% Step(1): Iron Color Palettes...
+    % The built-in colormap of the matlab seems not that kind of good for
+    % some images, for this reason using a text editor and its value is 
+    % defined inside. The value of this one is defined in uint8 format 
+    % (0-255), thus the image converted to floating point (0-1) and imported 
+    % them to matlab. Now it works pretty well.
+    load('iron.mat');
+    C=iron;
+    load('Cropped_image.mat');
+    img=J1;
+    [row,col]= size(img);
+    img=double(img);
+    figure; imshow(img);
+    % G=imread('1.png');
+    G=double(img);
+    L = size(C,1);
+    
+    %Scale the matrix to the range of the map.
+    Gs = round(interp1(linspace(min(G(:)),max(G(:)),L),1:L,G));
+    H = reshape(C(Gs,:),[size(Gs) 3]); % Make RGB image from scaled.
+    uint8Image = uint8(255 * mat2gray(H));
+    imshowpair(G,uint8Image,'montage');
+
+    % Image=uint8Image(:,:,2);
+    figure;imshow(uint8Image);
+    % imwrite(uint8Image,'3.jpg');
