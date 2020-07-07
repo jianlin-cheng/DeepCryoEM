@@ -1,0 +1,66 @@
+clc; close all; clear all;
+%
+load ribo.mat;
+imshow(img_avg2);
+originalImage=img_avg2;
+originalImage = imresize(originalImage,0.5);
+
+Inormalized=originalImage;
+limit=stretchlim(Inormalized);
+ad=imadjust(Inormalized,[limit(1) limit(2)]);  
+figure;imshow(ad);title('CTF Image Adjusment')
+%
+% figure;imshow(originalImage); title('Original Cryo-Image');
+% figure; imhist(originalImage);title('Histogram of the Original Cryo-Image');
+%
+%% Pre-processing Part
+% Inormalized = double(originalImage)./double(max(originalImage(:)));
+% figure;imshow(Inormalized); title('Cryo-Image Normalized');
+% figure; imhist(Inormalized);title('Histogram of the Normalized Cryo-Image');
+%
+% imwrite(Inormalized,'DM3.tif');
+I = histeq(Inormalized);
+K = wiener2(I,[5 5]);
+figure; imshow(K); title('Restored Cryo-Image');
+% figure; imhist(K);title('Histogram of the Restored Cryo-Image');
+% imwrite(K,'Test.tif');
+%
+I = histeq(K);
+figure; imshow(I); title('Histogram Equlaizer of Cryo-Image');
+figure; imhist(I);title('Histogram of the Equalization Cryo-Image');
+%
+g=adapthisteq(I,'clipLimit',.02,'Distribution','rayleigh');
+figure; imshow(I); title('Adaptive Histogram Equlaizer Cryo-Image');
+figure; imhist(I);title('Histogram of the Equalization Cryo-Image');
+%
+im=adapthisteq(g,'clipLimit',.99,'Distribution','rayleigh');
+figure; imhist(im);title('Histogram of the Adaptive Cryo-EM Histo-Equal.');
+figure;imshow(im);title('Adaptive Cryo-EM Histo-Equal.')
+% 
+% im=imguidedfilter(im);im=imguidedfilter(im);
+% im=imguidedfilter(im);im=imguidedfilter(im);
+% im=imadjust(im);
+figure;imshow(im);title('Gaudided Filtering')
+figure; imhist(im);title('Histogram of the Gaudided Filtering');
+% %
+% SE=strel('disk',5);J = imclose(im,SE);J2=imadjust(J,[.5,.9]);
+% figure;imshow(J2,[]);title('Post-processing Morphological Operation')
+% figure; imhist(J2);title('Histogram of the ost-processing Morphological Operation');
+% imwrite(im,'DM3_tested.tif');
+imcl=imopen(im,strel('disk',1));
+imcl=imopen(imcl,strel('disk',1));
+imcl=imopen(imcl,strel('disk',1));
+imcl=imopen(imcl,strel('disk',1));
+imcl=imopen(imcl,strel('disk',1));
+figure; imshow(imcl);
+J2=imcl;
+
+    [cluster1] = Our_Clustering1(J2);
+
+    [centers1, radii1, metric1] = imfindcircles(cluster1,[15 40]);
+
+    figure;imshow(ad)
+figure;imshow(ad);title('CryoEM AutoPicker: Automated Single Particle Piking (using Our Algorithm)');
+hold on;
+viscircles(centers1, radii1,'EdgeColor','b');
+plot(centers1(:,1), centers1(:,2), 'r+')
