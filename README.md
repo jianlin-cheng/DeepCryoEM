@@ -17,9 +17,24 @@ In general, this repostogy has three main folders as follow:
     - Stage 2: Fully Automated Training Particles-Selection. 
       - Perfect “good” Top and Side-view Training Particle Selection using AutoCryoPicker: Unsupervised Learning Approach for Fully Automated Single Particle Picking in Cryo-EM Images, which is used mainly for top and side view training particles picking and selection. 
       - Perfect “good” Irregular and Complex Training Particle-Selection using SuperCryoEMPicker: A Super Clustering Approach for Fully Automated Single Particle Picking in Cryo-EM, which is used for irregular and complicated training particles picking  and selection. 
+
 - The third folder is the "Component 2: Fully Automated Single Particle Picking based on Deep Classification Network", which has two models;
   - First mone is the Deep Classification Neural Network (Training Model).
   - Second one is the Automated Single Particle Picking (Testing Model). 
+
+- To run this repostory you need to follow the following steps:
+  - The first matlab code folder is the "Pre-processing Stage" which is used to preprocessed the whole images dataset and plot the average results of the PSNR, SNR, and MSE, ans well as to the student-t test. 
+  - The second matlab code is the "Signle Particle Detection_Demo" which is the single particle picking without the GUI version. 
+  - To run this task you have to go to the main matlab file "AutoPicker_Demo1" just you need to update the dataset folder directoty and CLICK run in matlab. 
+  - In this case the program will as you to select one single image then the program will auotomatically runs and display the single particles detection and picking. 
+  - Finally, there is a GUI version called "Guide User Interface_GUI" which is all in one, you need just to go directly to the "AutoCryoPicking" or "AutoCryoPicking" then run it. 
+  - the system will asks again to upload one single cryo-EM image then there is some other options such as: 
+  - Load cryo-EM : for load any7 cryo-EM for testing.
+  - Pre-processing (cryo-EM) : for doing the preprocessing task for the tested image. 
+  - Particles Detection and Picking: for detect and picking the particles in the tested image. 
+  - Performance Results: In this case - if you want to get the accuracy results and aother measurement you have to have a GT for each tested image we have already provide two images. 
+  - in this case, we have to select the GT image and the system will automatically calculate and display all the performnace results once you click of the "Particles Picking Accuracy" - cryo-EM projection: This task is to extract the BOX for each single particle. 
+  - Export Particles: This task is to extract the box dimension and the particle center information to *.TXT file.
   
 - The main manuscript that describe the DeepCryoPicker is avaliable at: https://www.biorxiv.org/content/10.1101/763839v1.
 - Please cite this work as: "DeepCryoPicker: Fully Automated Deep Neural Network for Single Protein Particle Picking in cryo-EM
