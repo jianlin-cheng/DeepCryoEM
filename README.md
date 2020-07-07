@@ -2,6 +2,7 @@
 Deep learning methods for CryoEM data analysis
 Cryo-electron microscopy (Cryo-EM) is widely used in the determination of the three-dimensional (3D) structures of macromolecules. Particle picking from 2D micrographs remains a challenging early step in the Cryo-EM pipeline due to the diversity of particle shapes and the extremely low signal-to-noise ratio (SNR) of micrographs. Because of these issues, significant human intervention is often required to generate a high-quality set of particles for input to the downstream structure determination steps. 
 
+# Datasets
 cryo-EM Micrographs that been used in this repostory have been collected from:
   - The first dataset is "EMPIAR-10146"- Apoferritin tutorial dataset for cisTEM, Dataset description is avaliable in https://www.ebi.ac.uk/pdbe/emdb/empiar/entry/10146/#&gid=1&pid=1
   
@@ -22,6 +23,10 @@ In general, this repostogy has three main folders as follow:
   - First mone is the Deep Classification Neural Network (Training Model).
   - Second one is the Automated Single Particle Picking (Testing Model). 
 
+# Requirements
+-You need to have a MATLAB 2017 (a)/(b) or the latest MATLAB version. 
+
+# How to Run
 - To run this repostory you need to follow the following steps:
   - The first matlab code folder is the "Pre-processing Stage" which is used to preprocessed the whole images dataset and plot the average results of the PSNR, SNR, and MSE, ans well as to the student-t test. 
   - The second matlab code is the "Signle Particle Detection_Demo" which is the single particle picking without the GUI version. 
@@ -35,7 +40,8 @@ In general, this repostogy has three main folders as follow:
   - Performance Results: In this case - if you want to get the accuracy results and aother measurement you have to have a GT for each tested image we have already provide two images. 
   - in this case, we have to select the GT image and the system will automatically calculate and display all the performnace results once you click of the "Particles Picking Accuracy" - cryo-EM projection: This task is to extract the BOX for each single particle. 
   - Export Particles: This task is to extract the box dimension and the particle center information to *.TXT file.
-  
+
+# Main Manuscript
 - The main manuscript that describe the DeepCryoPicker is avaliable at: https://www.biorxiv.org/content/10.1101/763839v1.
 - Please cite this work as: "DeepCryoPicker: Fully Automated Deep Neural Network for Single Protein Particle Picking in cryo-EM
 Adil Al-Azzawi, Anes Ouadou, Highsmith Max R, John J. Tanner, Jianlin Cheng doi: https://doi.org/10.1101/763839".
