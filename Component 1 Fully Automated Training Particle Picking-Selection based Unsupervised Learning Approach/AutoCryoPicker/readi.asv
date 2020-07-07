@@ -1,0 +1,29 @@
+imges=dir('**/*.hdf');
+n=1;
+path=imges(n).folder;
+% for n=1:length(imges)
+protien=imges(n).name;
+fullpath=fullfile(path,protien);
+fileID=fopen(fullpath);
+A2=fread(fileID,[3710 3838],'*ulong');
+% A2=fread(fileID,[2048 2123],'long');
+imshow(A2,[]);
+
+A2=A2(:,74:end);
+A2=flip(A2);
+A2=imrotate(A2,-90);
+Inormalized = double(A2)./double(max(A2(:)));
+I = histeq(Inormalized);
+subplot(1,2,1);imshow(imadjust(I,[]));
+
+Inormalized2 = double(ALDH7A1_NAD_UF_B5_0040)./double(max(ALDH7A1_NAD_UF_B5_0040(:)));
+I2 = histeq(Inormalized2);
+subplot(1,2,2);imshow(imadjust(I2,[]));
+% end
+
+% Inormalized = double(A2)./double(max(A2(:)));
+% imshow(Inormalized);
+% I = histeq(Inormalized);
+% figure; imshow(I);
+
+
